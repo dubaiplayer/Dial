@@ -11,9 +11,11 @@ import ReactPlayer from "react-player";
 
 function JoinScreen({ getMeetingAndToken }) {
   const [meetingId, setMeetingId] = useState(null);
+
   const onClick = async () => {
     await getMeetingAndToken(meetingId);
   };
+ 
   return (
     <div>
       <input
@@ -142,6 +144,7 @@ function MeetingView(props) {
 
 function App() {
   const [meetingId, setMeetingId] = useState(null);
+  const [username, setUsername] = useState('')
 
   const getMeetingAndToken = async (id) => {
     const meetingId =
@@ -153,13 +156,18 @@ function App() {
     setMeetingId(null);
   };
 
+  useEffect(() => {
+    let inputName = prompt("What is your name?")
+    setUsername(inputName)
+  }, [])
+
   return authToken && meetingId ? (
     <MeetingProvider
       config={{
         meetingId,
         micEnabled: true,
         webcamEnabled: true,
-        name: "C.V. Raman",
+        name: username,
       }}
       token={authToken}
     >
