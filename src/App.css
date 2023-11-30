@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+.user-video-container-main{
+  /* background-color: palevioletred; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.user-video-container{
+  /* background-color: #61dafb; */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.main-container{
+  /* background-color: orange; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.main-controls-container{
+  display: flex;
+  flex-direction: column;
+    /* background-color: rebeccapurple; */
+  padding: 10px;
+  margin: 10px;
+}
+
+.control-button{
+  border-radius: 5px;
+  color: white;
+  background-color: black;
+  font-weight: bold;
+}

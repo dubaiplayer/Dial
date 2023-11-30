@@ -64,14 +64,15 @@ function ParticipantView(props) {
   }, [micStream, micOn]);
 
   return (
-    <div key={props.participantId}>
+    <div className="user-video-container-main">
+    <div key={props.participantId} className="user-video-container">
       <p>
         Participant: {displayName} | Webcam: {webcamOn ? "ON" : "OFF"} | Mic:{" "}
         {micOn ? "ON" : "OFF"}
       </p>
       <audio ref={micRef} autoPlay muted={isLocal} />
       {webcamOn && (
-        <ReactPlayer
+        <ReactPlayer 
           //
           playsinline // very very imp prop
           pip={false}
@@ -90,16 +91,17 @@ function ParticipantView(props) {
         />
       )}
     </div>
+    </div>
   );
 }
 
 function Controls() {
   const { leave, toggleMic, toggleWebcam } = useMeeting();
   return (
-    <div>
-      <button onClick={() => leave()}>Leave</button>
-      <button onClick={() => toggleMic()}>toggleMic</button>
-      <button onClick={() => toggleWebcam()}>toggleWebcam</button>
+    <div className="main-controls-container">
+      <button className="control-button" onClick={() => leave()}>Leave</button>
+      <button className="control-button" onClick={() => toggleMic()}>Mic</button>
+      <button className="control-button" onClick={() => toggleWebcam()}>Webcam</button>
     </div>
   );
 }
@@ -124,7 +126,7 @@ function MeetingView(props) {
     <div className="container">
       <h3>Meeting Id: {props.meetingId}</h3>
       {joined && joined == "JOINED" ? (
-        <div>
+        <div className="main-container">
           <Controls />
           {[...participants.keys()].map((participantId) => (
             <ParticipantView
@@ -158,6 +160,11 @@ function App() {
 
   useEffect(() => {
     let inputName = prompt("What is your name?")
+
+    if (inputName == "") {
+      setUsername("Random Participant")
+    }
+
     setUsername(inputName)
   }, [])
 
